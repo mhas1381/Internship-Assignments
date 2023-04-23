@@ -1,0 +1,51 @@
+1.create a network :
+    docker network create my-net
+2.run image with static ip :
+    docker run --ip=192.168.1.100 nginx
+3.get container ip :
+    run docker inspect --format "{{ .NetworkSettings.IPAddress }}" my_image
+
+4.with Dockerfile:
+
+FROM ubuntu:latest
+
+# Create a custom network with a subnet range
+RUN docker network create --subnet=172.18.0.0/16 mynetwork
+
+# Set the container's IP address
+ENV IP_ADDRESS=172.18.0.2
+
+#set port
+EXPOSE 8000
+
+# Connect the container to the custom network
+CMD ["bash", "-c", "ip addr add ${IP_ADDRESS}/16 dev eth0 && ip route add default via 172.18.0.1 && /bin/bash"]
+
+5.Connect containers with same network :
+
+version: '3'
+services:
+    generator:
+        container_name: generator
+        build: ./generator
+        ports:
+            - 8080:8080
+        networks:
+            - my-network
+    multiplier:
+        container_name: multiplier
+        build: ./multiplier
+        ports:
+            - 8081:8081
+        networks:
+            - my-network
+    show:
+        container_name: show
+        build: ./show
+        ports:
+            - 8082:8082
+        networks:
+            - my-network
+networks:
+    my-network:
+        driver: bridge
