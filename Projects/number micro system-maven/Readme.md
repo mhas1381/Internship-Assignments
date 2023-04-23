@@ -33,4 +33,4 @@ for final result:
 ```shell
 curl http://127.0.0.1:8082/show/{number}
 ```
-![alt text](./terminals.jpg)
+![alt text](./teminals.jpg)
