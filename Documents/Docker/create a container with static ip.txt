@@ -23,29 +23,17 @@ CMD ["bash", "-c", "ip addr add ${IP_ADDRESS}/16 dev eth0 && ip route add defaul
 
 5.Connect containers with same network :
 
-version: '3'
-services:
-    generator:
-        container_name: generator
-        build: ./generator
-        ports:
-            - 8080:8080
-        networks:
-            - my-network
-    multiplier:
-        container_name: multiplier
-        build: ./multiplier
-        ports:
-            - 8081:8081
-        networks:
-            - my-network
-    show:
-        container_name: show
-        build: ./show
-        ports:
-            - 8082:8082
-        networks:
-            - my-network
+version: "3"
+
 networks:
-    my-network:
-        driver: bridge
+  my_network:
+    ipam:
+      config:
+        - subnet: 172.25.0.0/16
+
+services:
+  web:
+    image: nginx
+    networks:
+      my_network:
+        ipv4_address: 172.25.0.2
