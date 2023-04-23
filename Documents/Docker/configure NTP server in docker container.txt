@@ -1,0 +1,23 @@
+How to change NTP Server of Docker Container:
+
+1.configure NTP server when running Container:
+    ex: docker run -e TZ=Asia/Tehran ubuntu date
+
+2.To configure NTP (Network Time Protocol) server in Docker, you can use the --dns option to specify the IP address of an NTP server.
+
+ ex: docker run --dns <NTP_SERVER_IP> my-image
+     docker run -d --dns 37.44.185.42 nginx
+
+
+3.To change the NTP (Network Time Protocol) server in a Docker container, you can follow these steps:
+
+Open the Dockerfile or Docker Compose file for your container.
+Add the following line to set the NTP server:
+
+RUN echo "server <ntp-server-ip>" >> /etc/ntp.conf
+Replace <ntp-server-ip> with the IP address of the NTP server that you want to use.
+
+Build and run the container using the updated Dockerfile or Docker Compose file.
+Once the container is running, it should use the new NTP server that you specified in the ntp.conf file.
+
+Alternatively, you can also set the NTP server in the container's host system, and the container will automatically inherit the NTP settings from the host. To do this, you can modify the NTP configuration file in the host system, usually located at /etc/ntp.conf, and restart the NTP service. The container will pick up the NTP server settings from the host.
