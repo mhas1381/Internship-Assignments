@@ -1,0 +1,56 @@
+caching in docker:
+=============================================
+FROM nginx:1.21.6
+
+# Level 1 cache
+RUN apt-get update && apt-get -y upgrade
+
+# Level 2 cache
+RUN echo '<html><bod>My Custom Startpage</body></html>' > /usr/share/nginx/html/index.html
+=============================================
+It's take 12's to build for first time
+
+FROM nginx:1.21.6
+
+
+RUN apt-get update && apt-get -y upgrade
+
+RUN echo '<html><bod>I changed this</body></html>' > /usr/share/nginx/html/index.html
+============================================
+It's take 1's to build because docker used cache
+
+
+How to avoid caching in docker 
+1.use --no-cache option when building a image
+ex:docker build -t custom-nginx . --no-cache
+
+2.You add a CACHEBUST argument to your Dockerfile at the location you want to enforce a rebuild.
+Now, you can build the Docker image and provide an always different value that causes all following commands to rerun:
+
+============================================
+FROM nginx:1.21.6
+
+# Update all packages
+RUN apt-get update && apt-get -y upgrade
+
+# Custom cache invalidation
+ARG CACHEBUST=1
+============================================
+and type this command to take effect
+docker build -t my-custom-nginx --build-arg CACHEBUST=$(date +%s) .
+
+How can I use the cache efficiently?
+
+1.Order your layers
+2.Keep layers small
+3.Don’t include unnecessary files
+4.Use your package manager wisely
+5.Use the dedicated RUN cache
+
+RUN \
+    --mount=type=cache,target=/var/cache/apt \
+    apt-get update && apt-get install -y git
+
+6.Minimize the number of layers
+7.Use an appropriate base image
+8.Use multi-stage builds
