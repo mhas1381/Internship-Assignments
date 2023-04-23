@@ -1,0 +1,7 @@
+some servers ip that sync to Iran time:
+from ubnutu servers
+     37.44.185.42
+     4.53.160.75
+     85.199.214.102
+     185.178.193.52
+     91.189.91.157
