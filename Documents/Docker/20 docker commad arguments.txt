@@ -1,0 +1,23 @@
+docker run - Start a new container and run a command
+1.--name - Assign a name to the container
+2.-d or --detach - Run the container in detached mode (run in the background)
+3.-p or --publish - Publish a container's port(s) to the host
+	for example : docker run nginx -d -p 8080:80 --name=test
+4.-e or --env - Set environment variables inside the container
+5.-v or --volume - Mount a host directory or volume into the container
+6.-it - Start an interactive container with a terminal
+7.--rm - Automatically remove the container when it exits
+8.--network - Connect a container to a specific Docker network
+	for example : docker run -itd --network=multi-host-network busybox
+9.--link - Link a container to another container
+10.--restart - Specify a container's restart policy
+11.-u or --user - Set the user for the container
+12.--entrypoint - Override the default entrypoint of the container
+13.--workdir - Set the working directory inside the container
+14.--memory - Limit the amount of memory the container can use
+15.--cpu-shares - Set the CPU shares (relative weight) for the container
+16--privileged - Give the container full access to the host system
+17--no-cache : Build a new image without using the cache
+18.--compress : Compress the build context before sending it to the Docker daemon
+19.--help : Display help information for a specific Docker command
+20:-D : Debug mode
