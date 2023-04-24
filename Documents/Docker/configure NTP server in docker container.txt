@@ -17,6 +17,9 @@ Add the following line to set the NTP server:
 RUN echo "server <ntp-server-ip>" >> /etc/ntp.conf
 Replace <ntp-server-ip> with the IP address of the NTP server that you want to use.
 
+docker exec -it <container_id> bash
+ln -sf /usr/share/zoneinfo/Asia/Tehran /etc/localtime
+
 Build and run the container using the updated Dockerfile or Docker Compose file.
 Once the container is running, it should use the new NTP server that you specified in the ntp.conf file.
 
