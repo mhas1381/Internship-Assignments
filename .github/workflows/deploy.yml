@@ -31,4 +31,5 @@ jobs:
         port: ${{secrets.PORT}}
         script: |
           cd Projects
+          cd number micro system-maven
           docker-compose up -d --build generator
