@@ -20,5 +20,5 @@ jobs:
         host: ${{secrets.HOST}}
         port: ${{secrets.PORT}}
         script: |
-          touch hello_from_github.txt
+          rm hello_from_github.txt
 
