@@ -30,6 +30,7 @@ jobs:
         host: ${{secrets.HOST}}
         port: ${{secrets.PORT}}
         script: |
+          cd ${{secrets.PROJECT_PATH}}
           cd Projects
           cd number micro system-maven
           docker-compose up -d --build generator
