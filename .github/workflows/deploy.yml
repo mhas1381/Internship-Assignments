@@ -30,4 +30,5 @@ jobs:
         host: ${{secrets.HOST}}
         port: ${{secrets.PORT}}
         script: |
+          cd Projects
           docker-compose up -d --build generator
