@@ -19,8 +19,8 @@ jobs:
         java-version: '17'
 
 
-    - name: Build project
-      run: Projects/number micro system-maven/generator/mvnw clean package
+    # - name: Build project
+    #   run: Projects/number micro system-maven/generator/mvnw clean package
 
     - name: Connect to server and create file
       uses: appleboy/ssh-action@master
