@@ -29,4 +29,4 @@ jobs:
         port: ${{secrets.PORT}}
         distribution: ubuntu
         script: |
-          docker-compose up -d --build
+          docker-compose up -d --build generator
