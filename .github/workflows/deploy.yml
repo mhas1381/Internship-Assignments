@@ -27,5 +27,6 @@ jobs:
         password: ${{secrets.PASSWORD}}
         host: ${{secrets.HOST}}
         port: ${{secrets.PORT}}
+        distribution: ubuntu
         script: |
           docker-compose up -d --build
