@@ -18,6 +18,7 @@ jobs:
       with:
         java-version: '17'
 
+
     - name: Build project
       run: Projects/number micro system-maven/generator/mvnw clean package
 
