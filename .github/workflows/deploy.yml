@@ -15,11 +15,10 @@ jobs:
     - name: Connect to server and create file
       uses: appleboy/ssh-action@master
       with:
-        host: 91.217.177.18
-        username: root
-        password: ${{ secrets.SSH_PASSWORD }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        port: 2280
+        username: ${{secrets.USERNAME}}
+        password: ${{secrets.PASSWORD}}
+        host: ${{secrets.HOST}}
+        port: ${{secrets.PORT}}
         script: |
           touch hello_from_github.txt
 
