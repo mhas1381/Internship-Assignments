@@ -1,0 +1,32 @@
+configure docker container NTP server :
+
+docker exec -it <container_name> bash
+
+# config dir
+cd /etc
+touch ntp.conf
+
+# install editor for editing
+apt-get update
+apt-get install nano
+
+nano ntp.conf:
+
+server <valid time server ip>
+f.g:
+server 37.44.185.42
+
+
+how to force docker container to use host time :
+f.g for docker compose:
+    version: "3.9"
+    services:
+    backend:
+        build: .
+        container_name: backend
+        command: python manage.py runserver 0.0.0.0:8000
+        privileged: true
+        volumes:
+        - ./core:/app
+        - /etc/localtime:/etc/localtime:ro
+        - /etc/timezone:/etc/timezone:ro
